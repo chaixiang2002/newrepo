@@ -15,7 +15,7 @@ typedef patient ElemType;
 #include "SequenceList.h"                                //自定义头文件
 
 
-void main(){                                            //变量
+int main(){                                            //变量
 patient s;
 SequenceList myl;
 char find[10];
@@ -47,6 +47,7 @@ printf("\n--------------------datebase----------------\n");
     printf("%s \n%s \n%s \n%s \n%s \n",s.num,s.name,s.age,s.sex,s.sym);
        }
     }
+    return 0;
 }
 
    
