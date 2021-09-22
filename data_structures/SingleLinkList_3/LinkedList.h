@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
+typedef int ElemType;
 typedef struct SingleNode{                                              //????
     ElemType date;                      
     struct SingleNode *next;
@@ -20,6 +21,7 @@ int Lenth(SingleLinkedList *head){
     p=p->next;
     size++;
     }
+   // printf("size=%d\n",size);
     return size;
 }
 
@@ -71,10 +73,10 @@ int ListDelete(SingleLinkedList *head,int i,ElemType *x){
     j++;
     }
     if(j!=i-1){
-        printf("insert position parameter error!");
+        printf("insert position parameter 12error!");
     }
     s=p->next;
-    *x=s->next;
+    *x=s->date;
     p->next=s->next;
     free(s);
     return 1;

@@ -9,8 +9,9 @@ int main(){
     int i;
     int x;
     ListInit(&head);
-    for(i=0;i<10;i++){
-        ListInsert(head,i,x);
+    for(i=0;i<10;i++)
+        {scanf("%d",&x);
+        ListInsert(head,i,x);}
         printf("Linkedlist has been gennerated ,please enter!\n");
         scanf("%d",&i);
         ListDelete(head, i, &x);
@@ -22,6 +23,6 @@ int main(){
         }
         ListDestroy(&head);
 
-    }
+    
     return 0;
 }
