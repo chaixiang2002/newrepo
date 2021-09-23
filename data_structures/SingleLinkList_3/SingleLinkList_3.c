@@ -19,7 +19,7 @@ int main(){
         printf("the rest of the linked list is:\n");
         for(i=0;i<Lenth(head);i++){
             ListGet(head,i,&x);
-            printf("%d",x);
+            printf("%d\n",x);
         }
         ListDestroy(&head);
 

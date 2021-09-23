@@ -26,6 +26,7 @@ int Lenth(SingleLinkedList *head){
 }
 
 int ListGet(SingleLinkedList *head,int i,ElemType *x){
+   // printf("sdsada\n");
     SingleLinkedList *p;
     int j;
     p=head;
