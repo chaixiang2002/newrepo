@@ -11,6 +11,7 @@ int main(void){
     SeqInit(&myList);
     scanf("%s",line);
     while (line[i++]!='\0') {
+      //////////////////////////////////////////////////////////////////  printf("%d\n",i);
     if(    line[i-1]=='{'  ||  line[i-1]=='['  ||  line[i-1]=='('  ){
         SeqPush(&myList,line[i-1]);
             }
