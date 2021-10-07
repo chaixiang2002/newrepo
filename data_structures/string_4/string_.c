@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define Max 100
+
 #include "string4.h"
 int main(void){
     char *str,*str3;

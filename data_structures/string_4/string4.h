@@ -1,6 +1,6 @@
 #ifndef string4_H
 #define string4_H
-
+#define Max 100
 #include <stdio.h>
 typedef struct{
     char ch[Max];
@@ -15,7 +15,7 @@ void Strinit(Stringg *S){
 
 //
 int StrAdd(Stringg *S,char *A){
-    S->ch=*A;
+    S->ch=A;
      S->len=sizeof(A);
     if (sizeof(A)<Max) {
      return 1;
@@ -32,7 +32,7 @@ int StrPut(Stringg *S,char *P){
         return 0;
     }
     else {
-    *P=S->ch;
+    P=S->ch;
     printf("put suessfilly!\n");
     return 1;
     }
