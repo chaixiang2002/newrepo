@@ -2,7 +2,8 @@
 
 #include "string4.h"
 int main(void){
-    char *str,*str3;
+    //char *str,*str3;
+    char str[20],str3[20];
     scanf("%s",str);
     printf("sts:%s\n",str);
     Stringg str2;

@@ -1,6 +1,6 @@
 #ifndef string4_H
 #define string4_H
-#define Max 100
+#define Max 20
 #include <stdio.h>
 typedef struct{
     char ch[Max];
