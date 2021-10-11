@@ -1,2 +1,6 @@
+# ignore tmp files
 .~lock.*
 ~$*
+
+# ignore binary files
+*.exe
