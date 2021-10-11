@@ -1,11 +1,10 @@
 #include <stdio.h>
-#define Max 5
+#define Max 10
 typedef int ElemType;
 #include "queue.h"
 
 int main(void){
-    int i,x;
-    
+    int i,x,N;
     SeqQueue myqueue;
     Queinit(&myqueue);
     for(i=0;i<4;i++){
@@ -15,7 +14,6 @@ int main(void){
         return 0;
         }
     }
-
 
     for(i=0;i<4;i++){
     if (QueGet(&myqueue,&x)==0) {
@@ -28,5 +26,4 @@ int main(void){
     QueDelete(&myqueue,&x);
     printf("D:%d\n",x);
     }
-    
 }
