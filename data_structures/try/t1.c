@@ -16,4 +16,4 @@ int main(){
      printf("The repayment balance should be changed :%.2f\n",Amount);
 
 
-}
+}1
