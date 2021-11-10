@@ -6,7 +6,7 @@ int aaa = 0;
 int resolve(int n) {
   int sum = 1;
   aaa++;
-  cout << "----" << aaa << "--n:" << n << endl;
+  // cout << "----" << aaa << "--n:" << n << endl;
   if (n < N && a[n] != 0) {
     return a[n];
   }
