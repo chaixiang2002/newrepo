@@ -1,67 +1,50 @@
-#include "tree.hpp"
-#include <assert.h>
-#include <cstdio>
+#include "tree.h"
+#include <cstddef>
+#include <iostream>
+#include <malloc.h>
+#include <stdio.h>
 
-#define TREE_SIZE 100
-#define ARRAY_SIZE (TREE_SIZE + 1)
-
-static TREE_TYPE tree[ARRAY_SIZE]; // store all note of the tree
-// left_child
-static int left_child(int current) {
-  return current * 2;
-} // Compute node subscript
-// right_child
-static int right_child(int current) { return current * 2 + 1; }
-////Compute node subscript
-
-// insert
-void insert(TREE_TYPE value) {
-  int current;
-  assert(value != 0); // make true the value is non-zero
-
-  // start at root node
-  current = 1;
-
-  while (tree[current] != 0) {
-    if (value < tree[current])
-      current = left_child(current);
-    else {
-      assert(value != tree[current]);
-      current = right_child(current);
-    }
-    assert(current < ARRAY_SIZE);
-  }
-  tree[current] = value;
+LPBTreeNode *leftchild(LPBTreeNode *p) {
+  if (p == std::nullptr_t())
+    return std::nullptr_t();
+  return p->lchild;
 }
 
-// find
-TREE_TYPE *find(TREE_TYPE value) {
-  int current;
-  current = 1;
-  while (current < ARRAY_SIZE && tree[current] != value) {
-    if (value < tree[current]) {
-      current = left_child(current);
-    } else {
-      current = right_child(current);
-    }
-    if (current < ARRAY_SIZE)
-      return tree + current;
-    else
-      return 0;
-  }
+LPBTreeNode *rightchild(LPBTreeNode *p) {
+  if (p == std::nullptr_t())
+    return std::nullptr_t();
+  return p->rchild;
+}
 
-  // do_pre_order traverse
-  static void do_pre_order_traverse(int current,
-                                    void (*callback)(TREE_TYPE value)) {
-    if (current < ARRAY_SIZE && tree[current] != 0) {
-      callback(tree[current]);
-      do_pre_order_traverse(left_child(current), callback);
-      do_pre_order_traverse(right_child(current), callback);
+//前序
+LPBTreeNode *createbintree(void) {
+  LPBTreeNode *pbnode;
+  char ch;
+  scanf("%c", &ch);
+  if (ch == '#') {
+    pbnode = std::nullptr_t();
+  } else {
+    pbnode = (LPBTreeNode *)malloc(sizeof(LPBTreeNode));
+    if (pbnode == std::nullptr_t()) {
+      printf("Out of space!\n");
     }
+    pbnode->date = ch;
+    pbnode->lchild = createbintree();
+    pbnode->rchild = createbintree();
   }
+  return pbnode;
+}
 
-  // pre_ord_traverse
-  void pre_order_traverse(void (*callback)(TREE_TYPE value)) {
-    do_pre_order_traverse(1, callback);
+void Printtree(LPBTreeNode *LPBTreeNode, int n) {
+  int i;
+  if (LPBTreeNode == std::nullptr_t()) {
+    return;
   }
+  Printtree((LPBTreeNode->rchild), n + 1);
+  /*访问根结点*/
+  for (i = 0; i < n - 1; i++) {
+    printf("    ");
+    printf("%c \n", LPBTreeNode->date);
+  }
+  Printtree(LPBTreeNode->lchild, n + 1);
 }
