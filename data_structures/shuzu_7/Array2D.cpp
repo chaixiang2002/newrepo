@@ -1,11 +1,10 @@
-#include <cstdlib>
 #include <iostream>
 using namespace std;
 
 int **Make2DArray(int row, int col);
 int *PackA(int **a, int row);
 void Del(int **a, int row);
-inline int countt(int n) {
+ int countt(int n) {
   int r = 0, z = 0;
   for (int i = 1; i <= n; i++)
     r += i;
