@@ -1,5 +1,5 @@
-#ifndef Treet_H
-#define Treet_H
+#ifndef Treet2_H
+#define Treet2_H
 
 #include <malloc.h>
 #include <stdio.h>
@@ -10,11 +10,31 @@ typedef struct node {
   struct node *right;
 } Node;
 
+
+
+
 typedef struct {
   Node *root;
 } Tree;
 
-void insert(Tree *tree, ElemType value) {
+class flg{
+  public:
+  int flagg=0;
+  Node *temp2;
+  void change();
+  void change1(Node *temp);
+};
+void flg::change(){
+  flagg=-flagg;
+  
+}
+void flg::change1(Node *temp){
+  
+   Node *temp2=temp;
+}
+
+
+void insert(Tree *tree, ElemType value,flg flg2) {
   Node *node = (Node *)malloc(sizeof(Node));
   node->date = value;
   node->left = NULL;
@@ -24,23 +44,35 @@ void insert(Tree *tree, ElemType value) {
   }
   else {
     Node *temp = tree->root;
+   
     while (temp != NULL) {
-      if (value < temp->date) {
+      
         if (temp->left == NULL) {
           temp->left = node;
           return;
-        } else {
-          temp = temp->left;
-        }
-
-      } else {
-        if (temp->right == NULL) {
+        } 
+        
+         else if (temp->right == NULL) {
           temp->right = node;
-          return;
-        } else {
-          temp = temp->right;
+          if(flg2.flagg==1){
+            temp = flg2.temp2;
+          flg2.change();
+          }
+          else{
+            return;
+          }
+        } 
+        else {
+          temp = temp->left;
+          flg2.change();
+          flg2.change1(temp->right);
+
+          // temp2 = temp->right;
         }
-      }
+        
+   
+       
+      
     }
   }
   
