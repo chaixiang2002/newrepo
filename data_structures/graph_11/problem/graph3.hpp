@@ -1,10 +1,10 @@
-#ifndef __gragh2_HPP
-#define __gragh2_HPP
+#ifndef __gragh3_HPP
+#define __gragh3_HPP
 
 #include <iostream>
 
 #define Max 6
-typedef int Elemtype;
+typedef char Elemtype;
 
 // class RowColWeight{
 //   public:
