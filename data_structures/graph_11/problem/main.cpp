@@ -5,7 +5,7 @@ using namespace std;
 int main(){
   Elemtype x[]={'A','B','C','D','E','F'};
   int Size=sizeof(x)/sizeof(x[1]);
-  int s[Size][3]={{0,2,5},{0,3,30},{1,0,2},{1,4,8},{2,1,15},{2,5,7},{4,3,4},{5,3,10},{5,4,18}};
+  int s[9][3]={{0,2,5},{0,3,30},{1,0,2},{1,4,8},{2,1,15},{2,5,7},{4,3,4},{5,3,10},{5,4,18}};
   int edgeSize=9;
   Graphnode GNA[Size];
   for(int i=0;i<Size;i++)
