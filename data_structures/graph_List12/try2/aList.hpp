@@ -1,9 +1,9 @@
-#ifndef __List_HPP
-#define __List_HPP
+#ifndef __aList_HPP
+#define __aList_HPP
 
 #include <iostream>
 
-#define MaxVertices 10
+#define MaxVertices 9
 typedef char Elemtype;
 
 typedef struct {
@@ -12,21 +12,23 @@ typedef struct {
   int weigt;
 } RowCol;
 //===============================||
-typedef struct Node {
-  int adjvex;
-  int dest;
-  struct Node *next;
+typedef struct {
+  int Edg_vex;
+  int Edg_num;
 } Edge;
+
 typedef struct {
   Elemtype data;
-  int source;
+  Edge _edge[MaxVertices];
+  int parents[MaxVertices];
   int visit; // cx
-  Edge *adj;
-} AdjHeight;
-typedef struct {
-  AdjHeight a[MaxVertices];
-  int num_Verts;
   int num_Edges;
+
+} Graph_Col;
+
+typedef struct {
+  Graph_Col G_Col[MaxVertices];
+  int num_Verts;
 } ListGraph;
 //===============================||
 

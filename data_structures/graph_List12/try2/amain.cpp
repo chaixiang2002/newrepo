@@ -1,5 +1,6 @@
-#include "List.cpp"
-#include "List.hpp"
+#include "aList.cpp"
+#include "aList.hpp"
+#include <cstdio>
 #include <iostream>
 // Actual parameters:       _A
 // Formal parameters:       _F
@@ -18,5 +19,8 @@ int main() {
   }
   ListGraph Graph_List;
   CreateGraph(&Graph_List, Vertices_A, num_Vertices_A, RC, num_Edges_A);
-  DepthFirstSearch(Graph_List, 0);
+  print_(Graph_List, num_Vertices_A, num_Edges_A);
+  DepthFirstSearch(&Graph_List, 0);
+  cout << endl;
+  CreateGraph(&Graph_List, Vertices_A, num_Vertices_A, RC, num_Edges_A);
 }
