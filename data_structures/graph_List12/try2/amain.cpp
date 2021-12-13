@@ -1,6 +1,6 @@
 #include "aList.cpp"
 #include "aList.hpp"
-#include <cstdio>
+#include <cx_queue.hpp>
 #include <iostream>
 // Actual parameters:       _A
 // Formal parameters:       _F
@@ -17,6 +17,7 @@ int main() {
     RC[i].col = s[i][1];
     RC[i].weigt = s[i][2];
   }
+
   ListGraph Graph_List;
   CreateGraph(&Graph_List, Vertices_A, num_Vertices_A, RC, num_Edges_A);
   print_(Graph_List, num_Vertices_A, num_Edges_A);

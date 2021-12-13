@@ -2,7 +2,8 @@
 #define triangle_H
 #include <stdio.h>
 //顺序循环队列
-
+typedef int ElemType;
+#define Max 20
 typedef struct {
   ElemType queue[Max];
   int front, count;
@@ -38,8 +39,8 @@ int QueDelete(SeqQueue *Q, ElemType *d) {
   return 1;
 }
 
-void trianglee(int N,SeqQueue *Q) {
-     int i, x, j;
+void trianglee(int N, SeqQueue *Q) {
+  int i, x, j;
   for (i = 0; i < N + 1; i++) {
     int froutt = 0, rearr = 0;
     for (j = 0; j < i; j++) {
@@ -51,7 +52,6 @@ void trianglee(int N,SeqQueue *Q) {
     printf("\n");
     QueApp(Q, 1);
   }
-  
 }
 
 #endif
