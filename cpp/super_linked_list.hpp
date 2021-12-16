@@ -1,6 +1,16 @@
 #ifndef __sequencelist_HPP
 #define __sequencelist_HPP
-//!!!!!!!!!!!!!!!!!!!!      free(p)before,please p=null;
+//=======================================================
+// Resolved problems:
+// 1.free(p)before,please p=null;
+// 2.delete head-node and head-tail
+// 3.find_and_insert(tail->tail)
+//
+// Unsolved problems:
+// 1. the frist tail node is faulty(defective)
+//
+//=======================================================
+
 #include <cstdlib>
 #include <iostream>
 #include <iterator>
@@ -23,7 +33,6 @@ public:
     head->next = nullptr;
     head->prior = nullptr;
     tail = head;
-    std::cin >> head->data;
   }
   void add_node(T vertex) {
     temp = new list_node;
@@ -122,6 +131,7 @@ public:
     p = nullptr; //////////////////////////////////////!!!!!!!!!!!
     free(p);
   }
+  void delete_frist_tail() { delete_(tail->data); }
 };
 
 #endif
