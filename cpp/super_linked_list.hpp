@@ -1,6 +1,6 @@
 #ifndef __sequencelist_HPP
 #define __sequencelist_HPP
-
+//!!!!!!!!!!!!!!!!!!!!      free(p)before,please p=null;
 #include <cstdlib>
 #include <iostream>
 #include <iterator>
@@ -24,7 +24,6 @@ public:
     head->prior = nullptr;
     tail = head;
     std::cin >> head->data;
-    std::cout << tail->data;
   }
   void add_node(T vertex) {
     temp = new list_node;
@@ -57,11 +56,19 @@ public:
     }
     list_node *finded = find(inserted_pripor_vertex), *insert;
     insert = new list_node;
-    insert->data = inserted_pripor_vertex;
-    insert->next = finded->next;
+    insert->data = insert_vertex;
+    // if inserted_pripor_vertex is tail
+    if (finded->next == nullptr) {
+      insert->next == nullptr;
+      tail = insert;
+    } else {
+      insert->next = finded->next;
+    }
     insert->prior = finded;
     finded->next = insert;
-    insert->next->prior = insert;
+    if (insert->next != nullptr) {
+      insert->next->prior = insert; //*********
+    }
     finded = nullptr;
     insert = nullptr;
     free(finded);
@@ -74,8 +81,19 @@ public:
       return -1;
     }
     list_node *del = find(delete_vertex);
-    del->prior->next = del->next;
-    del->next->prior = del->prior;
+    // if delete_vertex=head
+    if (del != head) {
+      del->prior->next = del->next;
+    } else {
+      head = head->next;
+      head->prior = nullptr;
+    }
+    // if delete_vertex=tail;
+    if (del != tail)
+      del->next->prior = del->prior;
+    else
+      tail = tail->prior;
+    del = nullptr;
     free(del);
     return 0;
   }
@@ -83,10 +101,11 @@ public:
   long lenth_() {
     lenth = 0;
     list_node *p = head;
-    while (p != tail) {
+    while (p != nullptr) {
       lenth++;
       p = p->next;
     }
+    p = nullptr;
     free(p);
     return lenth;
   }
@@ -95,11 +114,10 @@ public:
     list_node *p = head;
     std::cout << "lenth(" << lenth_() << ")" << std::endl;
     std::cout << R"(head	)";
-    while (p != tail) {
+    while (p != nullptr) {
       std::cout << p->data << '\t';
       p = p->next;
     }
-    std::cout << p->data << '\t'; ////?????
     std::cout << "tail" << std::endl;
     p = nullptr; //////////////////////////////////////!!!!!!!!!!!
     free(p);
