@@ -7,6 +7,7 @@ int main() {
     L.add_node(i);
   }
   L.delete_frist_tail();
+
   L.print_all_list();
   L.delete_(2);
   L.print_all_list();

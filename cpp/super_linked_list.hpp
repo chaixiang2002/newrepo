@@ -11,12 +11,12 @@
 //
 //=======================================================
 
-#include <cstdlib>
 #include <iostream>
-#include <iterator>
-#include <ostream>
 template <typename T> class super_linked_list {
 protected:
+  long lenth;
+
+public:
   struct list_node {
     T data;
     list_node *next, *prior;
@@ -24,9 +24,6 @@ protected:
   list_node *head;
   list_node *tail;
   list_node *temp; //   remember delete!!!
-  long lenth;
-
-public:
   super_linked_list() { init_list(); }
   void init_list() {
     head = new list_node;
@@ -80,8 +77,8 @@ public:
     }
     finded = nullptr;
     insert = nullptr;
-    free(finded);
-    free(insert);
+    delete (finded);
+    delete (insert);
     return 0;
   }
   int delete_(T delete_vertex) {
@@ -103,7 +100,7 @@ public:
     else
       tail = tail->prior;
     del = nullptr;
-    free(del);
+    delete (del);
     return 0;
   }
 
@@ -115,7 +112,7 @@ public:
       p = p->next;
     }
     p = nullptr;
-    free(p);
+    delete (p);
     return lenth;
   }
 
@@ -129,9 +126,16 @@ public:
     }
     std::cout << "tail" << std::endl;
     p = nullptr; //////////////////////////////////////!!!!!!!!!!!
-    free(p);
+    delete (p);
   }
   void delete_frist_tail() { delete_(tail->data); }
+};
+
+template <typename T> class stack : public super_linked_list<T> {
+public:
+  list_node *stack;
+  stack() {}
+  void stack_init() {}
 };
 
 #endif
