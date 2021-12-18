@@ -15,8 +15,6 @@
 template <typename T> class super_linked_list {
 protected:
   long lenth;
-
-public:
   struct list_node {
     T data;
     list_node *next, *prior;
@@ -24,12 +22,53 @@ public:
   list_node *head;
   list_node *tail;
   list_node *temp; //   remember delete!!!
+  list_node *stack_top;
+  list_node *queue_front;
+  list_node *queue_rear;
+
+public:
   super_linked_list() { init_list(); }
   void init_list() {
     head = new list_node;
     head->next = nullptr;
     head->prior = nullptr;
     tail = head;
+  }
+  // 1.stack
+  //==========================================
+  void stack() { init_list(); }
+  void stack_reinit() { stack_top = head; }
+  void stack_push(T x) { add_node(x); }
+  T stack_pop() {
+    T tmp = head->data;
+    delete_(head->data);
+    return tmp;
+  }
+  T stack_get_top() { return head->data; }
+  void Destory_stack() { Destroy_super_list(); }
+  //==========================================
+
+  // 2. queue
+  //===================================================
+  void queue() { init_list(); }
+  void queue_reinit() {
+    queue_front = tail;
+    queue_rear = head;
+  }
+  bool queue_no_empty() { return super_list_no_empty(); }
+  void queue_append(T insert_vertex) { add_node(insert_vertex); }
+  T queue_delete() {
+    T tmp = head->data;
+    delete_(head);
+    return tmp;
+  }
+  T queue_get_head() { return head->data; }
+  void Destory_queue() { Destroy_super_list(); }
+  //===================================================
+  bool super_list_no_empty() {
+    if (head == tail)
+      return false;
+    return true;
   }
   void add_node(T vertex) {
     temp = new list_node;
@@ -129,13 +168,18 @@ public:
     delete (p);
   }
   void delete_frist_tail() { delete_(tail->data); }
+  void Destroy_super_list() {
+    while (super_list_no_empty()) {
+      delete_(head->data);
+    }
+  }
 };
 
-template <typename T> class stack : public super_linked_list<T> {
+/* template <typename T> class stack : public super_linked_list<T> {
 public:
   list_node *stack;
   stack() {}
   void stack_init() {}
-};
+}; */
 
 #endif
