@@ -59,7 +59,7 @@ public:
   void queue_append(T insert_vertex) { add_node(insert_vertex); }
   T queue_delete() {
     T tmp = head->data;
-    delete_(head);
+    delete_(head->data);
     return tmp;
   }
   T queue_get_head() { return head->data; }
