@@ -34,37 +34,7 @@ public:
     head->prior = nullptr;
     tail = head;
   }
-  // 1.stack
-  //==========================================
-  void stack() { init_list(); }
-  void stack_reinit() { stack_top = head; }
-  void stack_push(T x) { add_node(x); }
-  T stack_pop() {
-    T tmp = head->data;
-    delete_(head->data);
-    return tmp;
-  }
-  T stack_get_top() { return head->data; }
-  void Destory_stack() { Destroy_super_list(); }
-  //==========================================
 
-  // 2. queue
-  //===================================================
-  void queue() { init_list(); }
-  void queue_reinit() {
-    queue_front = tail;
-    queue_rear = head;
-  }
-  bool queue_no_empty() { return super_list_no_empty(); }
-  void queue_append(T insert_vertex) { add_node(insert_vertex); }
-  T queue_delete() {
-    T tmp = head->data;
-    delete_(head->data);
-    return tmp;
-  }
-  T queue_get_head() { return head->data; }
-  void Destory_queue() { Destroy_super_list(); }
-  //===================================================
   bool super_list_no_empty() {
     if (head == tail)
       return false;
@@ -173,6 +143,38 @@ public:
       delete_(head->data);
     }
   }
+
+  // 1.stack
+  //==========================================
+  void stack() { init_list(); }
+  void stack_reinit() { stack_top = head; }
+  void stack_push(T x) { add_node(x); }
+  T stack_pop() {
+    T tmp = head->data;
+    delete_(head->data);
+    return tmp;
+  }
+  T stack_get_top() { return head->data; }
+  void Destory_stack() { Destroy_super_list(); }
+  //==========================================
+
+  // 2. queue
+  //===================================================
+  void queue() { init_list(); }
+  void queue_reinit() {
+    queue_front = tail;
+    queue_rear = head;
+  }
+  bool queue_no_empty() { return super_list_no_empty(); }
+  void queue_append(T insert_vertex) { add_node(insert_vertex); }
+  T queue_delete() {
+    T tmp = head->data;
+    delete_(head->data);
+    return tmp;
+  }
+  T queue_get_head() { return head->data; }
+  void Destory_queue() { Destroy_super_list(); }
+  //===================================================
 };
 
 /* template <typename T> class stack : public super_linked_list<T> {
