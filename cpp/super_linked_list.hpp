@@ -17,6 +17,7 @@ protected:
   long lenth;
   struct list_node {
     T data;
+
     list_node *next, *prior;
   };
   list_node *head;
@@ -175,6 +176,26 @@ public:
   T queue_get_head() { return head->data; }
   void Destory_queue() { Destroy_super_list(); }
   //===================================================
+
+  // 3.sort
+  void buble_sort() {
+    lenth = lenth_();
+    int i = 0;
+    for (list_node *p = head; p->next != tail; p = p->next) {
+      i++;
+      int j = 0;
+      for (list_node *t = head; t != tail; t = t->next) {
+        if (t->data > t->next->data) {
+          T tmp = t->data;
+          t->data = t->next->data;
+          t->next->data = tmp;
+        }
+        j++;
+        if (j == lenth - i)
+          break;
+      }
+    }
+  }
 };
 
 /* template <typename T> class stack : public super_linked_list<T> {
