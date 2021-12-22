@@ -9,7 +9,10 @@ int main() {
   }
   L.delete_frist_tail();
   L.print_all_list();
-  L.buble_sort();
+  /*  L.buble_sort();
+   L.print_all_list() */
+  ;
+  L.straight_insert_sort();
   L.print_all_list();
   return 0;
 }

@@ -12,6 +12,7 @@
 //=======================================================
 
 #include <iostream>
+#include <ostream>
 template <typename T> class super_linked_list {
 protected:
   long lenth;
@@ -193,6 +194,27 @@ public:
         j++;
         if (j == lenth - i)
           break;
+      }
+    }
+  }
+  void straight_insert_sort() {
+    for (list_node *p = head->next; p != nullptr; p = p->next) {
+
+      list_node *t = p->prior;
+      if (p->data < t->data) {
+        std::cout << "111" << std::endl;
+        while (p->data < t->data && t != nullptr) {
+          t = t->prior;
+        }
+        std::cout << "1212" << std::endl;
+
+        T tmp = p->data;
+        delete_(p->data);
+        if (t != nullptr)
+          find_and_insert(tmp, t->data);
+        else
+          add_node(tmp);
+        t = nullptr;
       }
     }
   }
