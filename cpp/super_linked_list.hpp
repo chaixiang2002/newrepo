@@ -139,6 +139,19 @@ public:
     p = nullptr; //////////////////////////////////////!!!!!!!!!!!
     delete (p);
   }
+  ///////////////////////////////
+  void print_all_list_inverted() {
+    list_node *p = tail;
+    std::cout << "lenth(" << lenth_() << ")" << std::endl;
+    std::cout << R"(head	)";
+    while (p != nullptr) {
+      std::cout << p->data << '\t';
+      p = p->prior;
+    }
+    std::cout << "tail" << std::endl;
+    delete (p);
+  }
+
   void delete_frist_tail() { delete_(tail->data); }
   void Destroy_super_list() {
     while (super_list_no_empty()) {
@@ -199,22 +212,26 @@ public:
   }
   void straight_insert_sort() {
     for (list_node *p = head->next; p != nullptr; p = p->next) {
-
       list_node *t = p->prior;
       if (p->data < t->data) {
-        std::cout << "111" << std::endl;
-        while (p->data < t->data && t != nullptr) {
-          t = t->prior;
+        while (p->data < t->data) {
+          if (t->prior != nullptr) {
+            t = t->prior;
+          } else {
+            break;
+          }
         }
-        std::cout << "1212" << std::endl;
-
         T tmp = p->data;
         delete_(p->data);
-        if (t != nullptr)
+        if (t->prior != nullptr)
           find_and_insert(tmp, t->data);
-        else
-          add_node(tmp);
-        t = nullptr;
+        else {
+          if (tmp < t->data) {
+            add_node(tmp);
+          } else {
+            find_and_insert(tmp, t->data);
+          }
+        }
       }
     }
   }
