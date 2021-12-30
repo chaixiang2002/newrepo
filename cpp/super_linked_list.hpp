@@ -11,6 +11,8 @@
 //
 //=======================================================
 
+#include <bits/types/clock_t.h>
+#include <ctime>
 #include <iostream>
 #include <ostream>
 template <typename T> class super_linked_list {
@@ -29,7 +31,10 @@ protected:
   list_node *queue_rear;
 
 public:
+  clock_t begin, endd;
   super_linked_list() { init_list(); }
+  list_node *get_head() { return head; }
+  list_node *get_tail() { return tail; }
   void init_list() {
     head = new list_node;
     head->next = nullptr;
@@ -66,7 +71,24 @@ public:
     return finded;
   }
 
-  int find_and_insert(T insert_vertex, T inserted_pripor_vertex) {
+  int insert_ptr(list_node *p, T insert_vertex) {
+    list_node *insert;
+    insert = new list_node;
+    insert->data = insert_vertex;
+    if (p == tail) {
+      insert->prior = tail;
+      insert->next = nullptr;
+      tail->next = insert;
+      tail = insert;
+    } else {
+      insert->prior = p;
+      insert->next = p->next;
+      p->next = insert;
+      insert->next->prior = insert;
+    }
+    return 0;
+  }
+  int insert_behind(T insert_vertex, T inserted_pripor_vertex) {
     if (find(inserted_pripor_vertex) == nullptr) {
       std::cout << "no insert!" << std::endl;
       return -1;
@@ -88,8 +110,22 @@ public:
     }
     finded = nullptr;
     insert = nullptr;
-    delete (finded);
-    delete (insert);
+    return 0;
+  }
+
+  int delete_ptr(list_node *p) {
+    if (p == tail) { // if p==tail
+      tail = tail->prior;
+      tail->next = nullptr;
+
+    } else if (p == head) {
+      head = head->next;
+      head->prior = nullptr;
+
+    } else {
+      p->prior->next = p->next;
+      p->next->prior = p->prior;
+    }
     return 0;
   }
   int delete_(T delete_vertex) {
@@ -193,6 +229,7 @@ public:
 
   // 3.sort
   void buble_sort() {
+    begin = clock();
     lenth = lenth_();
     int i = 0;
     for (list_node *p = head; p->next != tail; p = p->next) {
@@ -209,9 +246,12 @@ public:
           break;
       }
     }
+    endd = clock();
   }
   void straight_insert_sort() {
+    begin = clock();
     for (list_node *p = head->next; p != nullptr; p = p->next) {
+      list_node *tt = p;
       list_node *t = p->prior;
       if (p->data < t->data) {
         while (p->data < t->data) {
@@ -222,26 +262,28 @@ public:
           }
         }
         T tmp = p->data;
-        delete_(p->data);
+        list_node *tt1 = p;
+        delete_ptr(tt1);
         if (t->prior != nullptr)
-          find_and_insert(tmp, t->data);
+          // insert_ptr(p, t->data);
+          insert_behind(tmp, t->data);
         else {
           if (tmp < t->data) {
             add_node(tmp);
           } else {
-            find_and_insert(tmp, t->data);
+            // insert_ptr(p, t->data);
+            insert_behind(tmp, t->data);
           }
         }
       }
     }
+    endd = clock();
+  }
+  void time_used() {
+
+    //- ((double)begin / CLOCKS_PER_SEC);
+
+    std::cout << (double)(endd - begin) / 1000000 << "s" << std::endl;
   }
 };
-
-/* template <typename T> class stack : public super_linked_list<T> {
-public:
-  list_node *stack;
-  stack() {}
-  void stack_init() {}
-}; */
-
 #endif

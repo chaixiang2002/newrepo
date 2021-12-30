@@ -21,6 +21,7 @@ int main() {
   ListGraph Graph_List;
   CreateGraph(&Graph_List, Vertices_A, num_Vertices_A, RC, num_Edges_A);
   print_(Graph_List, num_Vertices_A, num_Edges_A);
+  cout << "DepthFirstSearch:" << endl;
   DepthFirstSearch(&Graph_List, 0);
   cout << endl;
   CreateGraph(&Graph_List, Vertices_A, num_Vertices_A, RC, num_Edges_A);
